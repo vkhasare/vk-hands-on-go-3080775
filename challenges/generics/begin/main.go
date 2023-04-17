@@ -30,7 +30,16 @@ func sum(numbers []interface{}) interface{} {
 	}
 	return result
 }
-
+func printAny(arg interface{}){
+	switch arg.(type){
+	case string:
+		printString(arg.(string))
+	case int:
+		printInt(arg.(int))
+	case bool:
+		printBool(arg.(bool))
+	}
+}
 func main() {
 	// call non-generic print functions
 	printString("Hello")
@@ -38,6 +47,9 @@ func main() {
 	printBool(true)
 
 	// call generic printAny function for each value above
+	printAny("Hello")
+	printAny(42)
+	printAny(true)
 
 	// call sum function
 	fmt.Println("result", sum([]interface{}{1, 2, 3}))
